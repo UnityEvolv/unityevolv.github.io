@@ -1,0 +1,28 @@
+{
+  "name": "website-unityevolv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass assets/scss -o assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnityEvolv/website-unityevolv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UnityEvolv/website-unityevolv/issues"
+  },
+  "homepage": "https://github.com/UnityEvolv/website-unityevolv#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "i18next": "^23.6.0"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0"
+  }
+}
