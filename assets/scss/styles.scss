@@ -29,6 +29,7 @@ body {
 
 .navbar {
     padding: 1rem;
+    background-color: $dark-background;
 
     a {
         color: $text-color;
@@ -42,6 +43,12 @@ body {
 
     .navbar-toggler {
         border: 0;
+        background-color: $primary !important;
+        color: white !important;
+
+        &:hover {
+            background-color: darken($text-color, 20%);
+        }
 
         &:focus {
             outline: none;

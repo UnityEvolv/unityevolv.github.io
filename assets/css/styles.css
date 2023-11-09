@@ -8805,7 +8805,8 @@ body {
   display: none; }
 
 .navbar {
-  padding: 1rem; }
+  padding: 1rem;
+  background-color: #121212; }
   .navbar a {
     color: #FFFFFF;
     padding: 0.5rem 1rem;
@@ -8813,7 +8814,11 @@ body {
     .navbar a:hover {
       color: white; }
   .navbar .navbar-toggler {
-    border: 0; }
+    border: 0;
+    background-color: #C27FFF !important;
+    color: white !important; }
+    .navbar .navbar-toggler:hover {
+      background-color: #cccccc; }
     .navbar .navbar-toggler:focus {
       outline: none; }
 
