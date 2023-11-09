@@ -28,9 +28,7 @@ body {
 }
 
 .navbar {
-    display: flex;
     padding: 1rem;
-    height: $navbar-height;
 
     a {
         color: $text-color;
@@ -41,10 +39,18 @@ body {
             color: lighten($text-color, 20%);
         }
     }
+
+    .navbar-toggler {
+        border: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
 main {
-    width: 100%;
+    width: 100vw;
 
     button {
         border: none;
@@ -102,7 +108,9 @@ main {
         height: 100%;
         padding: 2rem;
 
-
+        @media (max-width: 768px) {
+            padding: 1rem;
+        }
 
         h1 {
             font-size: 2.5rem; // Responsive font size can be set using media queries or relative units
@@ -134,4 +142,40 @@ footer {
     top: $navbar-height;
     text-align: center;
     padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; // Adjust font size for small devices
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        .navbar-collapse {
+            margin-top: 1rem;
+        }
+
+        .navbar-nav {
+            flex-direction: column;
+            width: 100%;
+
+            li {
+                margin: 0.25rem 0;
+            }
+        }
+    }
+
+    .welcome .content,
+    .about-us .content,
+    #products .content,
+    #services .content {
+        padding: 1rem;
+    }
+}
+
+@media(max-width:576) {
+    .img {
+        max-width: 320px;
+    }
 }

@@ -8805,18 +8805,20 @@ body {
   display: none; }
 
 .navbar {
-  display: flex;
-  padding: 1rem;
-  height: 8vh; }
+  padding: 1rem; }
   .navbar a {
     color: #FFFFFF;
     padding: 0.5rem 1rem;
     text-decoration: none; }
     .navbar a:hover {
       color: white; }
+  .navbar .navbar-toggler {
+    border: 0; }
+    .navbar .navbar-toggler:focus {
+      outline: none; }
 
 main {
-  width: 100%; }
+  width: 100vw; }
   main button {
     border: none;
     padding: 1rem 2rem !important;
@@ -8856,6 +8858,9 @@ main {
   main section {
     height: 100%;
     padding: 2rem; }
+    @media (max-width: 768px) {
+      main section {
+        padding: 1rem; } }
     main section h1, main section .h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
@@ -8877,3 +8882,25 @@ footer {
   top: 8vh;
   text-align: center;
   padding: 1rem 0; }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; }
+  .navbar {
+    flex-direction: column; }
+    .navbar .navbar-collapse {
+      margin-top: 1rem; }
+    .navbar .navbar-nav {
+      flex-direction: column;
+      width: 100%; }
+      .navbar .navbar-nav li {
+        margin: 0.25rem 0; }
+  .welcome .content,
+  .about-us .content,
+  #products .content,
+  #services .content {
+    padding: 1rem; } }
+
+@media (max-width: 576) {
+  .img {
+    max-width: 320px; } }

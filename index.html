@@ -10,26 +10,25 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid justify-content-between">
+    <nav class="navbar">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./assets/img/logo.png" alt="UE" height="30" class="d-inline-block align-text-top">
                 <span class="text-primary">Unity</span><span class="text-secondary">Evolv</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav">
-                    <a href="#home">Home</a>
-                    <a href="#about-us">About Us</a>
-                    <a href="#products">Products</a>
-                    <a href="#services">Services</a>
-                    <a href="#contact-us">Contact Us</a>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -44,12 +43,12 @@
                     the collective, fostering environments where together, we grow stronger.</p>
             </div>
         </section>
-        <section id="about-us" class="d-flex">
+        <section id="about-us" class="d-flex flex-column flex-lg-row flex-xl-row">
 
-            <div class="w-50 d-flex justify-content-center">
+            <div class="w-100 d-flex justify-content-center ">
                 <img class="about-us-img img" src="./assets/img/about_us.png" alt="About Us Image">
             </div>
-            <div class="w-50  content">
+            <div class="w-100  content">
                 <h1 class="text-secondary">Our Story - Charting the Path from 'I' to 'We'</h1>
                 <p class="fs-4">From our humble beginnings to our global initiatives, our journey is a tapestry of
                     individual threads
@@ -60,9 +59,9 @@
 
         </section>
 
-        <section id="products" class="d-flex">
+        <section id="products" class="d-flex flex-column flex-lg-row flex-xl-row">
 
-            <div class="content w-50 bg-secondary p-3">
+            <div class="content w-100 bg-secondary p-3">
                 <h1 class="text-primary">VSamstha - Your Virtual Entity, Instantly Crafted</h1>
                 <p>Embark on a digital adventure with VSamstha, the ultimate app for virtual entity creation. Bring
                     your
@@ -75,7 +74,7 @@
                 <button class="btn btn-primary">Create Now</button>
                 <!-- <img src="vsamstha.jpg" alt="VSamstha Image" style="max-width:100%;height:auto;"> -->
             </div>
-            <div class="content w-50 bg-primary p-3">
+            <div class="content w-100 bg-primary p-3">
                 <h1>FastPortfolio - Your Professional Footprint, Fast-Forwarded</h1>
                 <p>Accelerate your professional journey with FastPortfolio. Seamlessly transform your LinkedIn
                     achievements
@@ -89,9 +88,9 @@
             </div>
         </section>
 
-        <section id="services" class="d-flex">
+        <section id="services" class="d-flex flex-column flex-lg-row flex-xl-row">
 
-            <div class="w-50 content">
+            <div class="w-100 content">
                 <h1>Software Engineering - From Concept to Reality</h1>
                 <p>At Unity Evolve, we don’t just build software; we engineer success. Specializing in turning your
                     visionary
@@ -101,29 +100,45 @@
                     scalability.
                     Let’s craft your next digital solution together.</p>
             </div>
-            <div class="w-50 d-flex justify-content-center">
+            <div class="w-100 d-flex justify-content-center">
                 <img class="img" src="./assets/img/services.png" alt="Services Image">
             </div>
         </section>
 
-        <section id="contact-us">
+        <section id="contact-us" class="d-flex flex-column align-items-center">
             <h1>Connect With Us - Let's Evolve Together</h1>
-            <form action="#" class="d-flex flex-column w-25">
+            <form action="#" class="d-flex flex-column w-100" style="max-width: 400px;">
                 <!-- Example input fields -->
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                <button type="submit" class="secondary">Send Message</button>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" class="form-control" rows="5" name="message" placeholder="Your Message"
+                        required></textarea>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-secondary">Send Message</button>
             </form>
         </section>
     </main>
 
-    <footer class="text-white bg-secondary">
-        <p>Unity Evolve © [Current Year]. All Rights Reserved.</p>
-        <!-- Social links and additional navigation could be added here -->
+    <footer class="text-center bg-secondary">
+        <p>Unity Evolve © <span id="current-year"></span>. All Rights Reserved.</p>
     </footer>
 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Dynamic year for the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 
