@@ -12,15 +12,16 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid justify-content-between">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/img/logo.png" alt="UE" height="30" class="d-inline-block align-text-top">
+                <span class="text-primary">Unity</span><span class="text-secondary">Evolv</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <img src="./assets/img/logo.png" alt="UE" height="36" class="d-inline-block align-text-top">
-                <span class="text-primary">Unity</span><span class="text-secondary">Evolv</span>
-            </a>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
                     <a href="#home">Home</a>
@@ -31,61 +32,93 @@
                 </div>
             </div>
         </div>
-
-
     </nav>
+    <main>
+        <section class="welcome" id="home">
+            <div class="content">
+                <h1>Welcome to Unity Evolve - Where Synergy Sparks Innovation</h1>
+                <button class="btn btn-primary">Discover Our Mission</button>
+                <p>Join the Movement Towards Collective Progress. At Unity Evolve, we bridge the gap between the
+                    individual
+                    and
+                    the collective, fostering environments where together, we grow stronger.</p>
+            </div>
+        </section>
+        <section id="about-us" class="d-flex">
 
-    <header class="site-header" id="home">
-        <div class="header-content">
-            <h1>Welcome to Unity Evolve - Where Synergy Sparks Innovation</h1>
-            <button class="btn discover-button">Discover Our Mission</button>
-            <p>Join the Movement Towards Collective Progress. At Unity Evolve, we bridge the gap between the individual
-                and
-                the collective, fostering environments where together, we grow stronger.</p>
-        </div>
-    </header>
+            <div class="w-50 d-flex justify-content-center">
+                <img class="about-us-img img" src="./assets/img/about_us.png" alt="About Us Image">
+            </div>
+            <div class="w-50  content">
+                <h1 class="text-secondary">Our Story - Charting the Path from 'I' to 'We'</h1>
+                <p class="fs-4">From our humble beginnings to our global initiatives, our journey is a tapestry of
+                    individual threads
+                    woven
+                    into a
+                    vibrant tapestry of collective action and mutual growth.</p>
+            </div>
 
+        </section>
 
-    <section id="about-us" style="color: #FFFFFF;">
-        <h2 style="color: #25E0F8;">Our Story - Charting the Path from 'I' to 'We'</h2>
-        <p>From our humble beginnings to our global initiatives, our journey is a tapestry of individual threads woven
-            into a vibrant community...</p>
-        <img src="about-us.jpg" alt="About Us Image" style="max-width:100%;height:auto;">
-    </section>
+        <section id="products" class="d-flex">
 
-    <section id="products" style="color: #FFFFFF;">
-        <div style="background-color: #C27FFF;">
-            <h3>VSamstha - Your Virtual Entity, Instantly Crafted</h3>
-            <p>Create an immersive digital avatar with VSamstha...</p>
-            <button style="background-color: #25E0F8;">Create Now</button>
-            <img src="vsamstha.jpg" alt="VSamstha Image" style="max-width:100%;height:auto;">
-        </div>
-        <div style="background-color: #25E0F8;">
-            <h3>FastPortfolio - Your Professional Footprint, Fast-Forwarded</h3>
-            <p>Transform your LinkedIn profile into a professional portfolio with FastPortfolio...</p>
-            <button style="background-color: #C27FFF;">Build Your Portfolio</button>
-            <img src="fastportfolio.jpg" alt="FastPortfolio Image" style="max-width:100%;height:auto;">
-        </div>
-    </section>
+            <div class="content w-50 bg-secondary p-3">
+                <h1 class="text-primary">VSamstha - Your Virtual Entity, Instantly Crafted</h1>
+                <p>Embark on a digital adventure with VSamstha, the ultimate app for virtual entity creation. Bring
+                    your
+                    persona to the
+                    virtual world with a touch of personality and a dash of innovation. Perfect for influencers,
+                    gamers,
+                    and
+                    anyone looking
+                    to establish a digital presence.</p>
+                <button class="btn btn-primary">Create Now</button>
+                <!-- <img src="vsamstha.jpg" alt="VSamstha Image" style="max-width:100%;height:auto;"> -->
+            </div>
+            <div class="content w-50 bg-primary p-3">
+                <h1>FastPortfolio - Your Professional Footprint, Fast-Forwarded</h1>
+                <p>Accelerate your professional journey with FastPortfolio. Seamlessly transform your LinkedIn
+                    achievements
+                    into a polished
+                    portfolio on GitHub Pages or Vercel. Ideal for professionals, creatives, and job seekers aiming
+                    to
+                    showcase their work
+                    effortlessly.</p>
+                <button class="btn btn-secondary">Build Your Portfolio</button>
+                <!-- <img src="fastportfolio.jpg" alt="FastPortfolio Image" style="max-width:100%;height:auto;"> -->
+            </div>
+        </section>
 
-    <section id="services" style="color: #FFFFFF;">
-        <h2 style="color: #25E0F8;">Software Engineering - From Concept to Reality</h2>
-        <p>Our dedicated team transforms your innovative ideas into robust platforms...</p>
-        <img src="software-engineering.jpg" alt="Software Engineering Image" style="max-width:100%;height:auto;">
-    </section>
+        <section id="services" class="d-flex">
 
-    <section id="contact-us" style="background-color: #C27FFF; color: #FFFFFF;">
-        <h2>Connect With Us - Let's Evolve Together</h2>
-        <form action="#">
-            <!-- Example input fields -->
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" style="background-color: #25E0F8;">Send Message</button>
-        </form>
-    </section>
+            <div class="w-50 content">
+                <h1>Software Engineering - From Concept to Reality</h1>
+                <p>At Unity Evolve, we don’t just build software; we engineer success. Specializing in turning your
+                    visionary
+                    ideas into
+                    dynamic platforms, our team is dedicated to creating solutions that embody efficiency, innovation,
+                    and
+                    scalability.
+                    Let’s craft your next digital solution together.</p>
+            </div>
+            <div class="w-50 d-flex justify-content-center">
+                <img class="img" src="./assets/img/services.png" alt="Services Image">
+            </div>
+        </section>
 
-    <footer style="background-color: #25E0F8; color: #C27FFF;">
+        <section id="contact-us">
+            <h1>Connect With Us - Let's Evolve Together</h1>
+            <form action="#" class="d-flex flex-column w-25">
+                <!-- Example input fields -->
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="secondary">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="text-white bg-secondary">
         <p>Unity Evolve © [Current Year]. All Rights Reserved.</p>
         <!-- Social links and additional navigation could be added here -->
     </footer>

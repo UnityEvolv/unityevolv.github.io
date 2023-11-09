@@ -2,9 +2,9 @@
 $primary: #C27FFF;
 $secondary: #25E0F8;
 $dark-background: #121212;
-$text-color: #FFFFFF;
-$header-height: 100vh; // Full height
-$overlay-color: rgba(0, 0, 0, 0.5); // Semi-transparent overlay for better text readability
+$text-color: #FFFFFF; // Full height
+$navbar-height: 8vh;
+$overlay-color: rgba(0, 0, 0, 1); // Semi-transparent overlay for better text readability
 // $min-contrast-ratio: 3;
 
 // Assign the primary color to Bootstrap's theme colors
@@ -23,9 +23,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .navbar {
     display: flex;
     padding: 1rem;
+    height: $navbar-height;
 
     a {
         color: $text-color;
@@ -38,119 +43,95 @@ body {
     }
 }
 
-.site-header {
-    height: $header-height;
-    background: url('../img/header_bg.png') no-repeat center center;
-    background-size: 100vw 100vh;
-    position: relative;
-    color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10rem 1rem;
-    text-align: center;
+main {
+    width: 100%;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: $overlay-color;
-        opacity: 0.6; // control overlay transparency
-        z-index: 1;
+    button {
+        border: none;
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        cursor: pointer; // Indicates the button is clickable
+        color: #ffffff !important; // For text color
+        border-radius: .25rem; // Optional, if you want rounded corners
+        transition: background-color .3s; // Smooth transition for hover effect
     }
 
-    .header-content {
+    .btn-primary:hover {
+        background-color: darken($primary, 10%);
+    }
+
+    .btn-seccondary:hover {
+        background-color: darken($secondary, 10%);
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcome {
+        background: url('../img/header_bg.png') no-repeat center center;
         position: relative;
-        z-index: 2;
-        padding-top: 10%;
+
+        padding: 10rem 1rem;
+        height: 100%;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $overlay-color;
+            opacity: 0.6; // control overlay transparency
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding-top: 10%;
+        }
+    }
+
+
+    section {
+        height: 100%;
+        padding: 2rem;
+
+
 
         h1 {
             font-size: 2.5rem; // Responsive font size can be set using media queries or relative units
             margin-bottom: 1rem; // Space between the h1 and button
+            color: $secondary;
         }
 
         p {
-            font-size: 1.5rem; // Responsive font size can be set using media queries or relative units
-            max-width: 600px; // Ensures the text is not too wide on larger screens
-            margin: auto; // Centers the text block
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 1rem auto;
+            color: white;
         }
 
-        .discover-button {
-            background-color: $primary;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer; // Indicates the button is clickable
-            color: #ffffff; // For text color
-            border-radius: .25rem; // Optional, if you want rounded corners
-            transition: background-color .3s; // Smooth transition for hover effect
-
-            &:hover {
-                background-color: darken($primary, 10%);
-            }
+        .img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
         }
-    }
-}
 
-// Responsive adjustments
-@media (max-width: 768px) {
-    .site-header {
-        height: auto; // Adjust height for mobile
-
-        .header-content {
-            padding-top: 20%; // Increase padding on mobile for better positioning
-
-            h1 {
-                font-size: 2rem; // Smaller text for mobile
-            }
-
-            p {
-                font-size: 1rem; // Smaller text for mobile
-            }
+        .about-us-img {
+            mix-blend-mode: hard-light
         }
-    }
-}
-
-section {
-    padding: 2rem;
-
-    &>h2 {
-        margin-bottom: 1rem;
-    }
-}
-
-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    color: $text-color;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background-color: lighten($secondary, 10%);
     }
 }
 
 footer {
+    position: relative;
+    top: $navbar-height;
     text-align: center;
     padding: 1rem 0;
 }
-
-// Media queries for responsiveness
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-    }
-
-    header,
-    section,
-    footer {
-        padding: 2rem 1rem;
-    }
-}
-
-// Additional styles here...

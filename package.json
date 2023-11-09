@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "scss": "node-sass assets/scss -o assets/css"
   },
   "repository": {
@@ -23,6 +23,11 @@
     "i18next": "^23.6.0"
   },
   "devDependencies": {
-    "node-sass": "^9.0.0"
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "node-sass": "^9.0.0",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

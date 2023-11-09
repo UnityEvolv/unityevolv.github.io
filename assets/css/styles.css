@@ -8801,9 +8801,13 @@ body {
   color: #FFFFFF;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
+::-webkit-scrollbar {
+  display: none; }
+
 .navbar {
   display: flex;
-  padding: 1rem; }
+  padding: 1rem;
+  height: 8vh; }
   .navbar a {
     color: #FFFFFF;
     padding: 0.5rem 1rem;
@@ -8811,83 +8815,65 @@ body {
     .navbar a:hover {
       color: white; }
 
-.site-header {
-  height: 100vh;
-  background: url("../img/header_bg.png") no-repeat center center;
-  background-size: 100vw 100vh;
-  position: relative;
-  color: white;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 10rem 1rem;
-  text-align: center; }
-  .site-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0.6;
-    z-index: 1; }
-  .site-header .header-content {
+main {
+  width: 100%; }
+  main button {
+    border: none;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    cursor: pointer;
+    color: #ffffff !important;
+    border-radius: .25rem;
+    transition: background-color .3s; }
+  main .btn-primary:hover {
+    background-color: #aa4cff; }
+  main .btn-seccondary:hover {
+    background-color: #07cae3; }
+  main .content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; }
+  main .welcome {
+    background: url("../img/header_bg.png") no-repeat center center;
     position: relative;
-    z-index: 2;
-    padding-top: 10%; }
-    .site-header .header-content h1, .site-header .header-content .h1 {
+    padding: 10rem 1rem;
+    height: 100%; }
+    main .welcome::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: black;
+      opacity: 0.6;
+      z-index: 1; }
+    main .welcome .content {
+      position: relative;
+      z-index: 2;
+      padding-top: 10%; }
+  main section {
+    height: 100%;
+    padding: 2rem; }
+    main section h1, main section .h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem; }
-    .site-header .header-content p {
+      margin-bottom: 1rem;
+      color: #25E0F8; }
+    main section p {
       font-size: 1.5rem;
       max-width: 600px;
-      margin: auto; }
-    .site-header .header-content .discover-button {
-      background-color: #C27FFF;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #ffffff;
-      border-radius: .25rem;
-      transition: background-color .3s; }
-      .site-header .header-content .discover-button:hover {
-        background-color: #aa4cff; }
-
-@media (max-width: 768px) {
-  .site-header {
-    height: auto; }
-    .site-header .header-content {
-      padding-top: 20%; }
-      .site-header .header-content h1, .site-header .header-content .h1 {
-        font-size: 2rem; }
-      .site-header .header-content p {
-        font-size: 1rem; } }
-
-section {
-  padding: 2rem; }
-  section > h2, section > .h2 {
-    margin-bottom: 1rem; }
-
-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  color: #FFFFFF;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease; }
-  button:hover {
-    background-color: #56e7fa; }
+      margin: 1rem auto;
+      color: white; }
+    main section .img {
+      width: 100%;
+      height: auto;
+      max-width: 500px; }
+    main section .about-us-img {
+      mix-blend-mode: hard-light; }
 
 footer {
+  position: relative;
+  top: 8vh;
   text-align: center;
   padding: 1rem 0; }
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column; }
-  header,
-  section,
-  footer {
-    padding: 2rem 1rem; } }
