@@ -41,6 +41,18 @@ export interface Product {
   body?: string[]
   features?: ProductFeature[]
   links?: ProductLink[]
+  /**
+   * A line directly under the hero's actions, for something a visitor needs to
+   * know *before* pressing one. ofiskit uses it to say what its demo actually
+   * is, so nobody arrives expecting to invite a colleague.
+   */
+  heroNote?: string
+  /** A panel pointing at a related product, such as the engine behind one. */
+  aside?: {
+    title: string
+    body: string
+    link: ProductLink
+  }
   licence?: string
   /**
    * Kept out of every list, every page and the sitemap, while its entry stays
