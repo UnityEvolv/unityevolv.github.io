@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@import '@unityevolv/unitykit/theme.css';
+
+/*
+ * Tailwind does not scan node_modules, so without this line the kit's class
+ * names produce no CSS at all: components render with correct markup, no
+ * styling and no error. If something looks unstyled, check this first.
+ */
+@source "../node_modules/@unityevolv/unitykit/dist";
