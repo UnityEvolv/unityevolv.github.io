@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
-import { App } from './App'
 import { Layout } from './layout/Layout'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { ProductPage } from './pages/ProductPage'
 import { ProductsPage } from './pages/ProductsPage'
@@ -19,7 +19,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<App />} />
+        <Route index element={<HomePage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="products/:slug" element={<ProductPage />} />
         <Route path="services" element={<ServicesPage />} />
