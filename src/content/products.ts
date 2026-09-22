@@ -42,10 +42,12 @@ export const products: Product[] = [
         body: "Team insights are aggregate only — no one's individual activity is shown to their manager.",
       },
     ],
-    links: [
-      { label: 'Talk to us', href: '/contact?topic=unityofis', primary: true },
-      { label: 'See the open-source engine', href: '/products/ofiskit' },
-    ],
+    links: [{ label: 'Talk to us', href: '/contact?topic=unityofis', primary: true }],
+    aside: {
+      title: 'The engine is open source',
+      body: 'unityofis is a wrapper around ofiskit, which is open source and free to run yourself. The product adds organisations, roles, more providers and the infrastructure behind them — the office itself is the same code.',
+      link: { label: 'Look at ofiskit', href: '/products/ofiskit' },
+    },
     metaDescription:
       'unityofis is a virtual office that runs on your own video and chat provider account — rooms you can walk into, no markup and no lock-in.',
   },
@@ -63,6 +65,13 @@ export const products: Product[] = [
       { label: 'Try the demo', href: 'https://unityevolv.com/ofis-kit/', primary: true },
       { label: 'View on GitHub', href: 'https://github.com/UnityEvolv/ofis-kit' },
     ],
+    heroNote:
+      'The demo runs entirely in your browser: open it in a second tab and that tab is a second person, with a real call between them. A few simulated colleagues keep the office busy.',
+    aside: {
+      title: 'Hosted, with your company around it',
+      body: 'unityofis is ofiskit with organisations, roles, guests, audit logs and your choice of call provider behind it — for teams who would rather not run the office themselves.',
+      link: { label: 'Look at unityofis', href: '/products/unityofis' },
+    },
     licence:
       'AGPL-3.0-only for the app, the server and the UI packages; Apache-2.0 for the three interface packages, so writing an adapter is not a licensing decision.',
     metaDescription:
