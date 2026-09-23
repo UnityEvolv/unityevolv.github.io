@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { LegacyRedirects } from './LegacyRedirects'
+import { PageMeta } from './PageMeta'
 import { legacyPathRoutes } from './legacy'
 import { Layout } from './layout/Layout'
 import { AboutPage } from './pages/AboutPage'
@@ -26,6 +27,7 @@ export function AppRoutes() {
   return (
     <>
       <LegacyRedirects />
+      <PageMeta />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />

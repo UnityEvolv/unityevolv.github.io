@@ -63,6 +63,32 @@ and link out to those URLs.
 - The rewrite stories stack on one another, since each page needs the setup branch. Merge
   a stack **bottom first**; GitHub retargets the child pull requests as each base lands.
 
+## How the site is built and published
+
+`npm run build` is three steps:
+
+1. `vite build` — the client bundle and `dist/index.html`, the template.
+2. `vite build --ssr src/entry-server.tsx --outDir dist-ssr` — the same
+   components, built to run in Node. **It must not build into `dist`**: that
+   publishes the server bundle and a second copy of `public/`, `CNAME`
+   included.
+3. `node scripts/prerender.mjs` — renders every path in `sitemapPaths` to its
+   own `index.html`, writes `404.html`, `sitemap.xml` and `robots.txt`, and
+   rewrites the title, description, canonical and link-preview tags per page.
+
+`scripts/check-dist.mjs` then refuses a build that would break the site in ways
+a green test run cannot see: a missing `CNAME`, a route that did not prerender,
+pages sharing one title, the SSR bundle published, or a directory at
+`/unity-kit` or `/ofis-kit` that would shadow another repository's live site.
+CI runs it before the upload.
+
+GitHub Pages serves `404.html` for any path it does not have, which is what
+makes an unknown URL a real 404 rather than a 200 that merely looks like one.
+
+Metadata lives in `src/seo.ts` and takes product descriptions from
+`src/content/products.ts`, because two copies of a description drift and the
+one that drifts is the one nobody looks at.
+
 ## Package management
 
 **npm only.** Do not add `pnpm-lock.yaml` or `yarn.lock`. Commit `package-lock.json`.
