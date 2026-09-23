@@ -26,7 +26,7 @@ describe('Products page', () => {
     renderAt('/products')
 
     for (const product of visibleProducts) {
-      expect(screen.getByRole('link', { name: product.name })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: `Read about ${product.name}` })).toBeInTheDocument()
     }
     expect(screen.queryByText('unityFin')).not.toBeInTheDocument()
   })

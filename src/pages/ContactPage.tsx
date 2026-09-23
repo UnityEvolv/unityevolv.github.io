@@ -97,64 +97,108 @@ export function ContactPage() {
       />
 
       <Section>
-        <div className="max-w-xl">
-          {state === 'sent' ? (
-            <Alert variant="ok" title="Message sent" className="mb-6">
-              Thank you — we will come back to you.
-            </Alert>
-          ) : null}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <div className="max-w-xl">
+            {state === 'sent' ? (
+              <Alert variant="ok" title="Message sent" className="mb-6">
+                Thank you — we will come back to you.
+              </Alert>
+            ) : null}
 
-          {state === 'handed-to-mail-client' ? (
-            <Alert variant="info" title="Your email app should be opening" className="mb-6">
-              Everything you wrote is already in the draft. Press send there and it reaches us. If
-              nothing opened, your browser may have no mail app set up.
-            </Alert>
-          ) : null}
+            {state === 'handed-to-mail-client' ? (
+              <Alert variant="info" title="Your email app should be opening" className="mb-6">
+                Everything you wrote is already in the draft. Press send there and it reaches us. If
+                nothing opened, your browser may have no mail app set up.
+              </Alert>
+            ) : null}
 
-          {state === 'failed' ? (
-            <Alert variant="danger" title="That did not send" className="mb-6">
-              Something went wrong on the way. Please try again in a moment.
-            </Alert>
-          ) : null}
+            {state === 'failed' ? (
+              <Alert variant="danger" title="That did not send" className="mb-6">
+                Something went wrong on the way. Please try again in a moment.
+              </Alert>
+            ) : null}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <Input name="name" label="Your name" required autoComplete="name" />
-            <Input
-              name="email"
-              type="email"
-              label="Email address"
-              required
-              autoComplete="email"
-              help="So we can reply."
-            />
-            <Select ref={topicRef} name="topic" label="What is it about?" defaultValue="build">
-              {topics.map((topic) => (
-                <option key={topic.value} value={topic.value}>
-                  {topic.label}
-                </option>
-              ))}
-            </Select>
-            <Textarea name="message" label="Your message" rows={6} required />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <Input name="name" label="Your name" required autoComplete="name" />
+              <Input
+                name="email"
+                type="email"
+                label="Email address"
+                required
+                autoComplete="email"
+                help="So we can reply."
+              />
+              <Select ref={topicRef} name="topic" label="What is it about?" defaultValue="build">
+                {topics.map((topic) => (
+                  <option key={topic.value} value={topic.value}>
+                    {topic.label}
+                  </option>
+                ))}
+              </Select>
+              <Textarea name="message" label="Your message" rows={6} required />
 
-            {/* The honeypot. Hidden from sight and from assistive technology, and
+              {/* The honeypot. Hidden from sight and from assistive technology, and
                 skipped in the tab order, so only a bot ever fills it in. */}
-            <div className="hidden" aria-hidden="true">
-              <label htmlFor="company">Company</label>
-              <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="company">Company</label>
+                <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
 
-            <div className="flex flex-col gap-2">
-              <Button type="submit" variant="primary" loading={state === 'sending'}>
-                {endpoint ? 'Send message' : 'Write this in your email app'}
-              </Button>
-              {!endpoint ? (
-                <p className="text-base-content/70 text-sm">
-                  This opens your own email app with the message ready to send, so you can see
-                  exactly what reaches us.
-                </p>
-              ) : null}
-            </div>
-          </form>
+              <div className="flex flex-col gap-2">
+                <Button type="submit" variant="primary" loading={state === 'sending'}>
+                  {endpoint ? 'Send message' : 'Write this in your email app'}
+                </Button>
+                {!endpoint ? (
+                  <p className="text-base-content/70 text-sm">
+                    This opens your own email app with the message ready to send, so you can see
+                    exactly what reaches us.
+                  </p>
+                ) : null}
+              </div>
+            </form>
+          </div>
+
+          {/*
+            What happens next, beside the form rather than after it: the
+            question a person has while deciding whether to type anything is
+            "and then what", and an answer below the submit button is an
+            answer they read afterwards.
+          */}
+          <aside className="border-base-300 bg-base-200 h-fit rounded-lg border p-6">
+            <h2 className="text-lg font-semibold">What happens next</h2>
+            <ol className="text-base-content/80 mt-4 flex flex-col gap-4 text-sm">
+              <li>
+                <span className="text-base-content font-medium">We read it ourselves.</span> There
+                is no queue and no form-filling robot between you and us.
+              </li>
+              <li>
+                <span className="text-base-content font-medium">We reply within a day or two</span>{' '}
+                — usually with questions, because the useful ones come early.
+              </li>
+              <li>
+                <span className="text-base-content font-medium">
+                  A call, if it looks promising.
+                </span>{' '}
+                Half an hour is normally enough to tell whether we are the right people for it.
+              </li>
+              <li>
+                <span className="text-base-content font-medium">An honest answer either way.</span>{' '}
+                If your idea does not need us, we would rather say so than take the work.
+              </li>
+            </ol>
+
+            <p className="text-base-content/70 mt-6 text-sm">
+              Prefer to look before you write? The{' '}
+              <a href="https://unityevolv.com/ofis-kit/" className="text-secondary underline">
+                OfisKit demo
+              </a>{' '}
+              and the{' '}
+              <a href="https://unityevolv.com/unity-kit/" className="text-secondary underline">
+                UnityKit components
+              </a>{' '}
+              are both public.
+            </p>
+          </aside>
         </div>
       </Section>
     </>

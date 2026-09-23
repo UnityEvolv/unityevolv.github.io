@@ -1,9 +1,11 @@
 import { Accordion, Stepper } from '@unityevolv/unitykit'
 import { productBuildingService as service } from '../content/services'
 import { CTABand } from '../sections/CTABand'
+import { FeatureGrid } from '../sections/FeatureGrid'
 import { Hero } from '../sections/Hero'
 import { LinkButton } from '../sections/LinkButton'
 import { Section } from '../sections/Section'
+import { SplitSection } from '../sections/SplitSection'
 
 /**
  * The one service: building a product from scratch with AI.
@@ -35,18 +37,30 @@ export function ServicesPage() {
         />
       </Section>
 
-      <Section
+      <SplitSection
         title="What we have built this way"
-        intro="Our own products, in the open, with public code and public CI. The same way of working is what you get."
+        intro="Our own products, in the open, with public code and public CI — so the claim is checkable rather than a reference we picked. The same way of working is what you get."
+        image={{ src: '/img/services.webp', alt: '' }}
+        imageSide="start"
+        actions={
+          <>
+            <LinkButton href="/products/ofiskit" variant="quiet">
+              OfisKit, the open-source virtual office
+            </LinkButton>
+            <LinkButton href="/products/unitykit" variant="quiet">
+              UnityKit, the design system this site uses
+            </LinkButton>
+          </>
+        }
+      />
+
+      <Section
+        title="What you are left holding"
+        intro="The end of a project is a handover, not a dependency. This is what arrives."
       >
-        <div className="flex flex-wrap gap-3">
-          <LinkButton href="/products/ofiskit" variant="quiet">
-            OfisKit, the open-source virtual office
-          </LinkButton>
-          <LinkButton href="/products/unitykit" variant="quiet">
-            UnityKit, the design system this site uses
-          </LinkButton>
-        </div>
+        <FeatureGrid
+          features={service.deliverables.map((item) => ({ title: item.title, body: item.body }))}
+        />
       </Section>
 
       <Section title="Who it is for">

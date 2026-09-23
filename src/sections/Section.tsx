@@ -13,10 +13,10 @@ interface SectionProps {
  */
 export function Section({ title, intro, children }: SectionProps) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+    <section className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
       {title ? <h2 className="text-2xl font-semibold sm:text-3xl">{title}</h2> : null}
       {intro ? <p className="text-base-content/70 mt-3 max-w-2xl">{intro}</p> : null}
-      <div className={title || intro ? 'mt-8' : undefined}>{children}</div>
+      <div className={title || intro ? 'mt-6' : undefined}>{children}</div>
     </section>
   )
 }

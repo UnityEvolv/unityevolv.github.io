@@ -1,3 +1,4 @@
+import { Accordion } from '@unityevolv/unitykit'
 import { Navigate, useParams } from 'react-router-dom'
 import { productBySlug } from '../content/products'
 import { CTABand } from '../sections/CTABand'
@@ -13,9 +14,15 @@ import { StatusBadge } from '../sections/StatusBadge'
  * One component rather than five: the products differ in what they say, not in
  * how a product page is shaped, and a page per product would mean five places
  * to fix the day the shape changes. A product that needs something the shape
- * does not have gets a new field, which every product can then use.
+ * does not have gets a new field, which every product can then use — which is
+ * how the facts, the audience and the questions arrived.
  *
- * A slug that is not a visible product — a typo, or unityFin before it is
+ * Every section below is conditional, so a product says as much as it has to
+ * say. The order is the order someone reads in: what it is, the facts they
+ * skim for, why it exists, what it does, who it is for, what they are about to
+ * ask, and what it costs them to find out more.
+ *
+ * A slug that is not a visible product — a typo, or UnityFin before it is
  * ready — falls through to the 404 page rather than rendering an empty shell.
  */
 export function ProductPage() {
@@ -50,6 +57,27 @@ export function ProductPage() {
         }
       />
 
+      {product.facts?.length ? (
+        <section className="border-base-300 bg-base-200 border-b">
+          <dl className="mx-auto grid max-w-6xl gap-x-8 gap-y-4 px-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+            {product.facts.map((fact) => (
+              <div key={fact.label} className="flex flex-col">
+                {/*
+                  `text-muted`, not an opacity. `text-base-content/60` measures
+                  4.46:1 on the light surface — under AA by a hair, and axe
+                  caught it. The kit's muted token is checked for contrast in
+                  the kit's own CI, which an opacity never is.
+                */}
+                <dt className="text-muted text-xs font-medium tracking-wide uppercase">
+                  {fact.label}
+                </dt>
+                <dd className="text-base-content mt-1 text-sm font-medium">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+
       {product.body?.length ? (
         <Section>
           <div className="flex max-w-3xl flex-col gap-4">
@@ -68,6 +96,18 @@ export function ProductPage() {
         </Section>
       ) : null}
 
+      {product.audience?.length ? (
+        <Section title="Who it is for">
+          <ul className="text-base-content/80 flex max-w-3xl flex-col gap-3">
+            {product.audience.map((line) => (
+              <li key={line} className="border-base-300 border-l-2 pl-4">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
       {product.aside ? (
         <Section>
           <aside className="border-base-300 bg-base-200 rounded-lg border p-6">
@@ -82,6 +122,21 @@ export function ProductPage() {
         </Section>
       ) : null}
 
+      {product.faqs?.length ? (
+        <Section title="Questions">
+          <div className="max-w-3xl">
+            <Accordion
+              headingLevel={3}
+              items={product.faqs.map((faq) => ({
+                value: faq.question,
+                title: faq.question,
+                content: faq.answer,
+              }))}
+            />
+          </div>
+        </Section>
+      ) : null}
+
       {product.licence ? (
         <Section title="Licence">
           <p className="text-base-content/70 max-w-3xl">{product.licence}</p>
@@ -89,7 +144,7 @@ export function ProductPage() {
       ) : null}
 
       <CTABand
-        title="Questions about it?"
+        title={`Questions about ${product.name}?`}
         body="Tell us what you are trying to do and we will tell you whether this is the thing for it."
         actionLabel="Get in touch"
         actionHref={`/contact?topic=${product.slug}`}

@@ -29,6 +29,33 @@ export const productBuildingService: Service = {
       body: 'Deployed, documented, and yours: the code, the accounts and the deployment. No part of it stays locked to us.',
     },
   ],
+  /** What is actually handed over, so "we build it" means something. */
+  deliverables: [
+    {
+      title: 'A repository you own',
+      body: 'On your account from the first commit, with the history, the tests and the pipeline that built it.',
+    },
+    {
+      title: 'A deployment that runs itself',
+      body: 'Continuous integration and a deploy on merge, so shipping a change is a pull request rather than an event.',
+    },
+    {
+      title: 'Tests that mean something',
+      body: 'Not coverage for its own sake: the tests that would have caught the bugs we actually hit while building it.',
+    },
+    {
+      title: 'Documentation for the next person',
+      body: 'How it is built, why it is built that way, and what to do when it breaks — written for whoever inherits it, including you.',
+    },
+    {
+      title: 'Accessible and responsive from the start',
+      body: 'WCAG AA, working on a phone, in both light and dark. Retrofitting any of those costs more than doing them.',
+    },
+    {
+      title: 'No lock to us',
+      body: 'Your accounts, your domains, your keys. If you never speak to us again, the product keeps running.',
+    },
+  ],
   audience: [
     'Founders with an idea and no engineering team yet.',
     'Small teams who need a second product built without pausing the first.',

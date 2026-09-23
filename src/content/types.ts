@@ -53,10 +53,19 @@ export interface Product {
     body: string
     link: ProductLink
   }
+  /**
+   * The answers someone skims for before reading anything: what it runs on,
+   * what it costs them, what licence it carries. Short enough to sit in a row.
+   */
+  facts?: { label: string; value: string }[]
+  /** Who this is for, in their words rather than a segment name. */
+  audience?: string[]
+  /** The questions this particular product raises, answered. */
+  faqs?: { question: string; answer: string }[]
   licence?: string
   /**
    * Kept out of every list, every page and the sitemap, while its entry stays
-   * here ready for launch. unityFin is the one today.
+   * here ready for launch. UnityFin is the one today.
    */
   hidden?: boolean
   /** For the page's `<title>` and meta description. */
@@ -79,6 +88,8 @@ export interface Service {
   headline: string
   intro: string
   steps: ServiceStep[]
+  /** What the client is left holding at the end. */
+  deliverables: { title: string; body: string }[]
   audience: string[]
   faqs: ServiceFaq[]
   metaDescription: string

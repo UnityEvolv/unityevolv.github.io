@@ -20,8 +20,8 @@ const openSource: ExternalLink[] = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-base-200 border-base-300 mt-16 border-t">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2">
+    <footer className="bg-base-200 border-base-300 mt-12 border-t">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2">
         <nav aria-label="Footer">
           <h2 className="text-base-content mb-3 text-sm font-semibold">Unity Evolv</h2>
           <ul className="flex flex-col gap-2">
