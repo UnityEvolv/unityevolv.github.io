@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Brand, Button, Drawer } from '@unityevolv/unitykit'
+import { Button, Drawer } from '@unityevolv/unitykit'
+import { SiteLogo } from './SiteLogo'
 import { navLinks } from './navigation'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -24,7 +25,7 @@ export function SiteNavbar() {
   return (
     <header className="bg-base-100 border-base-300 sticky top-0 z-30 border-b">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Brand product="unityevolv" href="/" size="md" />
+        <SiteLogo />
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (

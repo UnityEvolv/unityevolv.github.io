@@ -12,10 +12,10 @@ interface ExternalLink {
  * domain. They are other repositories' deployments, not routes of this site.
  */
 const openSource: ExternalLink[] = [
-  { label: 'ofiskit on GitHub', href: 'https://github.com/UnityEvolv/ofis-kit' },
-  { label: 'ofiskit demo', href: 'https://unityevolv.com/ofis-kit/' },
-  { label: 'unitykit on GitHub', href: 'https://github.com/UnityEvolv/unity-kit' },
-  { label: 'unitykit components', href: 'https://unityevolv.com/unity-kit/' },
+  { label: 'OfisKit on GitHub', href: 'https://github.com/UnityEvolv/ofis-kit' },
+  { label: 'OfisKit demo', href: 'https://unityevolv.com/ofis-kit/' },
+  { label: 'UnityKit on GitHub', href: 'https://github.com/UnityEvolv/unity-kit' },
+  { label: 'UnityKit components', href: 'https://unityevolv.com/unity-kit/' },
 ]
 
 export function SiteFooter() {

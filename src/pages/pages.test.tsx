@@ -1,9 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { AppRoutes } from '../routes'
+import { mission } from '../content/company'
 
+// The contact page has its own file, contact.test.tsx: it has two sending
+// paths and enough of them to crowd this one out.
 function renderAt(path: string) {
   return render(
     <MemoryRouter initialEntries={[path]}>
@@ -37,54 +39,8 @@ describe('About page', () => {
   it('says what the company does now, not the old story', () => {
     const { container } = renderAt('/about')
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'We build products, and we open the foundations.',
-    )
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(mission.storyHeadline)
     expect(container.textContent).not.toContain('VSamstha')
     expect(container.textContent).not.toContain('FastPortfolio - Your Professional')
-  })
-})
-
-describe('Contact page', () => {
-  afterEach(() => {
-    vi.unstubAllGlobals()
-  })
-
-  it('asks for what a reply needs', () => {
-    renderAt('/contact')
-
-    expect(screen.getByLabelText(/your name/i)).toBeRequired()
-    expect(screen.getByLabelText(/email address/i)).toBeRequired()
-    expect(screen.getByLabelText(/your message/i)).toBeRequired()
-  })
-
-  it('preselects the topic a product page sent it', () => {
-    renderAt('/contact?topic=unityprotect')
-    expect(screen.getByLabelText(/what is it about/i)).toHaveValue('unityprotect')
-  })
-
-  it('falls back to the default topic when the query is nonsense', () => {
-    renderAt('/contact?topic=not-a-topic')
-    expect(screen.getByLabelText(/what is it about/i)).toHaveValue('build')
-  })
-
-  it('says plainly that the form is not connected rather than swallowing a message', () => {
-    // No VITE_CONTACT_ENDPOINT is set in the test environment, which is the
-    // state the site ships in until the form service is chosen.
-    renderAt('/contact')
-    expect(screen.getByText(/this form is not connected yet/i)).toBeInTheDocument()
-  })
-
-  it('never posts anywhere while no endpoint is configured', async () => {
-    const fetchSpy = vi.fn()
-    vi.stubGlobal('fetch', fetchSpy)
-
-    renderAt('/contact')
-    await userEvent.type(screen.getByLabelText(/your name/i), 'Sasha Kim')
-    await userEvent.type(screen.getByLabelText(/email address/i), 'sasha@example.com')
-    await userEvent.type(screen.getByLabelText(/your message/i), 'Hello')
-    await userEvent.click(screen.getByRole('button', { name: /send message/i }))
-
-    await waitFor(() => expect(fetchSpy).not.toHaveBeenCalled())
   })
 })

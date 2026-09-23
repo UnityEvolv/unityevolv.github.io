@@ -48,7 +48,7 @@ export const productBuildingService: Service = {
     {
       question: 'What can I look at before deciding?',
       answer:
-        'Two of our products are open source and running: ofiskit, a virtual office you can try in your browser, and unitykit, the design system this website is built with. Both have public code, public CI and public demos.',
+        'Two of our products are open source and running: OfisKit, a virtual office you can try in your browser, and UnityKit, the design system this website is built with. Both have public code, public CI and public demos.',
     },
     {
       question: 'What happens after launch?',

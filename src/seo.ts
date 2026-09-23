@@ -40,7 +40,7 @@ export const staticPages: Record<string, PageMeta> = {
   '/products': page(
     '/products',
     'Products',
-    'unityofis, ofiskit, unitykit and what is coming next. Two of them are open source and running today.',
+    'UnityOfis, OfisKit, UnityKit and what is coming next. Two of them are open source and running today.',
   ),
   '/services': page('/services', 'Building products with AI', service.metaDescription),
   '/about': page(

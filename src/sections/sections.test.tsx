@@ -83,7 +83,7 @@ describe('ProductCard', () => {
 
     renderRouted(<ProductCard product={product} />)
 
-    expect(screen.getByRole('link', { name: 'ofiskit' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'OfisKit' })).toHaveAttribute(
       'href',
       '/products/ofiskit',
     )
