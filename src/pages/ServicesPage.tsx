@@ -19,7 +19,6 @@ export function ServicesPage() {
       <Hero
         headline={service.headline}
         sub={service.intro}
-        image={{ src: '/img/services.webp', alt: '' }}
         actions={<LinkButton href="/contact?topic=build">Tell us about your idea</LinkButton>}
       />
 

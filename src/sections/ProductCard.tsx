@@ -5,6 +5,18 @@ import { StatusBadge } from './StatusBadge'
 
 interface ProductCardProps {
   product: Product
+  /**
+   * Adds the opening sentence of the product's own introduction. The Products
+   * page uses it, where a visitor is comparing; the home page does not, where
+   * they are still deciding whether to care.
+   */
+  detailed?: boolean
+}
+
+/** The first sentence, which is what a card has room for. */
+function firstSentence(text: string): string {
+  const end = text.search(/[.!?](\s|$)/)
+  return end === -1 ? text : text.slice(0, end + 1)
 }
 
 /**
@@ -16,11 +28,11 @@ interface ProductCardProps {
  * own `Link` — the arrangement the kit's own documentation asks consumers to
  * use.
  *
- * The whole card is not the link. A single link on the title keeps one
- * tab stop per card and one thing for a screen reader to announce, and leaves
- * the tagline as text rather than part of a very long link name.
+ * The whole card is not the link. A single link on the title keeps one tab
+ * stop per card and one thing for a screen reader to announce, and leaves the
+ * tagline as text rather than part of a very long link name.
  */
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, detailed = false }: ProductCardProps) {
   return (
     <Card
       variant="interactive"
@@ -39,7 +51,10 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       }
     >
-      <p className="text-base-content/70">{product.tagline}</p>
+      <p className="text-base-content/80">{product.tagline}</p>
+      {detailed ? (
+        <p className="text-base-content/70 mt-3 text-sm">{firstSentence(product.intro)}</p>
+      ) : null}
     </Card>
   )
 }
