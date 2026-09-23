@@ -46,3 +46,36 @@ describe('page metadata', () => {
     expect(metaFor('/products/').title).toBe(allPages['/products'].title)
   })
 })
+
+describe('canonical URLs', () => {
+  it('always end in a slash, because that is what Pages serves', () => {
+    // GitHub Pages answers /products with a 301 to /products/. A canonical
+    // pointing at the redirect asks a crawler to prefer a URL it will never
+    // be given.
+    for (const meta of Object.values(allPages)) {
+      expect(meta.url.endsWith('/'), meta.url).toBe(true)
+    }
+  })
+
+  it('give every page a title with room to say something', () => {
+    for (const [path, meta] of Object.entries(allPages)) {
+      if (path === '/404') continue
+      expect(meta.title.length, `${path} title is short`).toBeGreaterThan(24)
+      expect(meta.title.length, `${path} title will be truncated`).toBeLessThan(70)
+    }
+  })
+})
+
+describe('the brand', () => {
+  it('is spelled one way across every page', () => {
+    // It was three: "Unity Evolv" in titles, "UnityEvolv" in descriptions and
+    // "Unity Evolve" in the mission. Vamsi picked UnityEvolv, matching the
+    // logo, the GitHub organisation, the domain and the npm scope.
+    const text = Object.values(allPages)
+      .map((meta) => `${meta.title} ${meta.description}`)
+      .join(' ')
+
+    expect(text).toContain('UnityEvolv')
+    expect(text).not.toMatch(/Unity Evolve?\b/)
+  })
+})

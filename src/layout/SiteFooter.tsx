@@ -23,7 +23,7 @@ export function SiteFooter() {
     <footer className="bg-base-200 border-base-300 mt-12 border-t">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2">
         <nav aria-label="Footer">
-          <h2 className="text-base-content mb-3 text-sm font-semibold">Unity Evolv</h2>
+          <h2 className="text-base-content mb-3 text-sm font-semibold">UnityEvolv</h2>
           <ul className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <li key={link.to}>
@@ -55,7 +55,7 @@ export function SiteFooter() {
 
       <div className="border-base-300 border-t">
         <p className="text-base-content/70 mx-auto max-w-6xl px-4 py-6 text-sm">
-          Unity Evolv © {new Date().getFullYear()}. All rights reserved.
+          UnityEvolv © {new Date().getFullYear()}. All rights reserved.
         </p>
       </div>
     </footer>
