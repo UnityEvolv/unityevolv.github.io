@@ -6,6 +6,7 @@ import { Hero } from '../sections/Hero'
 import { LinkButton } from '../sections/LinkButton'
 import { ProductCard } from '../sections/ProductCard'
 import { Section } from '../sections/Section'
+import { SplitSection } from '../sections/SplitSection'
 
 /**
  * What UnityEvolv does, in the order a first-time visitor needs it: what we
@@ -74,23 +75,16 @@ export function HomePage() {
         </ul>
       </Section>
 
-      <Section title={service.headline} intro={service.intro}>
-        <div className="grid items-center gap-8 sm:grid-cols-2">
-          <div className="flex flex-wrap gap-3">
-            <LinkButton href="/services" variant="quiet">
-              How we would build yours
-            </LinkButton>
-          </div>
-          <img
-            src="/img/services.webp"
-            alt=""
-            width={1200}
-            height={1200}
-            loading="lazy"
-            className="border-base-300 rounded-lg border"
-          />
-        </div>
-      </Section>
+      <SplitSection
+        title={service.headline}
+        intro={service.intro}
+        image={{ src: '/img/services.webp', alt: '' }}
+        actions={
+          <LinkButton href="/services" variant="quiet">
+            How we would build yours
+          </LinkButton>
+        }
+      />
 
       <CTABand
         title="Tell us about your idea"

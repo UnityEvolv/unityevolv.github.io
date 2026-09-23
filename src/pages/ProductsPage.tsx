@@ -46,7 +46,7 @@ export function ProductsPage() {
             <ul className="grid gap-4 sm:grid-cols-2">
               {group.products.map((product) => (
                 <li key={product.slug}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} detailed />
                 </li>
               ))}
             </ul>

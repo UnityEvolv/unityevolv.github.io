@@ -1,5 +1,10 @@
 import type { ReactNode } from 'react'
 
+export interface HeroImage {
+  src: string
+  alt: string
+}
+
 interface HeroProps {
   /** Rendered as the page's `h1`. */
   headline: string
@@ -10,21 +15,27 @@ interface HeroProps {
   /** The actions row. Usually one `LinkButton` and a quieter second one. */
   actions?: ReactNode
   /**
-   * A backdrop behind the whole band. Decorative, so `alt` is empty and the
-   * image never carries meaning the words do not.
+   * The backdrop. Defaults to the site's own hero image, so every page has
+   * one; pass another to override it, or `null` for a plain band.
+   *
+   * Decorative by default, so `alt` is empty and the picture never carries
+   * meaning the words do not.
    */
-  image?: { src: string; alt: string }
+  image?: HeroImage | null
 }
+
+/** Every page wears this unless it says otherwise. */
+export const defaultHeroImage: HeroImage = { src: '/img/hero.webp', alt: '' }
 
 /**
  * The top of a page. Only ever one per page, because it carries the `h1`.
  *
- * With an image, the picture sits behind the words under a scrim rather than
- * beside them. The scrim is what keeps the text at AA over an image whose
- * colours nobody controls — a photograph cannot be checked for contrast the
- * way a token can, so the contrast comes from the overlay instead.
+ * The picture sits behind the words under a scrim rather than beside them. The
+ * scrim is what keeps the text at AA over an image whose colours nobody
+ * controls — a photograph cannot be checked for contrast the way a token can,
+ * so the contrast comes from the overlay instead.
  */
-export function Hero({ headline, sub, eyebrow, actions, image }: HeroProps) {
+export function Hero({ headline, sub, eyebrow, actions, image = defaultHeroImage }: HeroProps) {
   return (
     <section className="border-base-300 relative isolate overflow-hidden border-b">
       {image ? (
