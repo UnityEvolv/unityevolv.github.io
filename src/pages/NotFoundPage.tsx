@@ -17,8 +17,19 @@ import { LinkButton } from '../sections/LinkButton'
 export function NotFoundPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-24">
+      {/*
+        Every page needs a level-one heading, and this is a page: axe fails it
+        otherwise, and a screen-reader user landing here with nothing above an
+        h2 cannot tell what they have arrived at. The kit's EmptyState offers
+        p, h2, h3 and h4 but not h1 — UKIT-34 — so the h1 is here, worded
+        differently from the panel below it so the two do not read as a
+        stutter.
+      */}
+      <h1 className="sr-only">Page not found</h1>
+
       <EmptyState
         icon="search"
+        titleAs="h2"
         title="That page is not here"
         description="The link may be from the old site, or the product may not have launched yet."
         action={<LinkButton href="/products">See the products</LinkButton>}
