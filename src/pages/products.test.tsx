@@ -79,7 +79,9 @@ describe('Product page', () => {
   })
 
   it('sends an unknown product to the not-found page', () => {
-    renderAt('/products/vsamstha')
+    // Not vsamstha: that is a real old link and is redirected to unityofis
+    // instead, which LegacyRedirects.test.tsx covers.
+    renderAt('/products/not-a-product')
     expect(screen.getByText('That page is not here')).toBeInTheDocument()
   })
 
