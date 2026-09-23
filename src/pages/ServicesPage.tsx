@@ -19,6 +19,7 @@ export function ServicesPage() {
       <Hero
         headline={service.headline}
         sub={service.intro}
+        image={{ src: '/img/services.webp', alt: '' }}
         actions={<LinkButton href="/contact?topic=build">Tell us about your idea</LinkButton>}
       />
 
@@ -41,10 +42,10 @@ export function ServicesPage() {
       >
         <div className="flex flex-wrap gap-3">
           <LinkButton href="/products/ofiskit" variant="quiet">
-            ofiskit, the open-source virtual office
+            OfisKit, the open-source virtual office
           </LinkButton>
           <LinkButton href="/products/unitykit" variant="quiet">
-            unitykit, the design system this site uses
+            UnityKit, the design system this site uses
           </LinkButton>
         </div>
       </Section>

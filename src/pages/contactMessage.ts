@@ -20,10 +20,10 @@ export interface ContactMessage {
 
 export const topics = [
   { value: 'build', label: 'Building a product with AI' },
-  { value: 'unityofis', label: 'unityofis' },
+  { value: 'unityofis', label: 'UnityOfis' },
   { value: 'unityprotect', label: 'UnityProtect' },
-  { value: 'ofiskit', label: 'ofiskit' },
-  { value: 'unitykit', label: 'unitykit' },
+  { value: 'ofiskit', label: 'OfisKit' },
+  { value: 'unitykit', label: 'UnityKit' },
   { value: 'fastportfolio', label: 'FastPortfolio' },
   { value: 'other', label: 'Something else' },
 ]

@@ -3,9 +3,11 @@ import type { Product, ProductStatus } from './types'
 /**
  * The product line-up, in the order it appears on the Products page.
  *
- * Two names are spelled deliberately: **unityofis** is lower case, matching the
- * repository and the kit's `Brand` product name, and **UnityProtect** is camel
- * case. VSamstha was the old name for unityofis and is not used anywhere.
+ * **Names are written the way Vamsi writes them: UnityOfis, OfisKit, UnityKit,
+ * UnityProtect.** The repositories and npm packages stay lower case —
+ * `ofis-kit`, `@unityevolv/unitykit` — because those are identifiers rather
+ * than names, and only the identifiers appear in URLs here. VSamstha was the
+ * old name for UnityOfis and is not used anywhere.
  *
  * Note on the two unreleased products: neither has a launch route yet, so the
  * call to action is "Talk to us", pointing at the contact form with the topic
@@ -13,14 +15,14 @@ import type { Product, ProductStatus } from './types'
  */
 export const products: Product[] = [
   {
-    name: 'unityofis',
+    name: 'UnityOfis',
     slug: 'unityofis',
     status: 'in-development',
     tagline: 'A virtual office that runs on your own provider account.',
     intro:
       "Your team works in an office drawn as rooms. See who's in which room, walk in to talk, share your screen, knock on a door that's closed, and step into the break room when you don't want to be disturbed. It runs in the browser, as a desktop app, and on Android.",
     body: [
-      "What makes it different: every other virtual office locks you into their video provider and marks up the cost. unityofis lets your company bring its own account — LiveKit, Daily, Agora or Microsoft Teams for calls, Ably for chat — and pay the provider's own price directly. Switch whenever you like; nothing in the office changes.",
+      "What makes it different: every other virtual office locks you into their video provider and marks up the cost. UnityOfis lets your company bring its own account — LiveKit, Daily, Agora or Microsoft Teams for calls, Ably for chat — and pay the provider's own price directly. Switch whenever you like; nothing in the office changes.",
       'A built-in peer-to-peer mode is included free for small rooms, so a small team needs nothing else.',
     ],
     features: [
@@ -45,19 +47,19 @@ export const products: Product[] = [
     links: [{ label: 'Talk to us', href: '/contact?topic=unityofis', primary: true }],
     aside: {
       title: 'The engine is open source',
-      body: 'unityofis is a wrapper around ofiskit, which is open source and free to run yourself. The product adds organisations, roles, more providers and the infrastructure behind them — the office itself is the same code.',
-      link: { label: 'Look at ofiskit', href: '/products/ofiskit' },
+      body: 'UnityOfis is a wrapper around OfisKit, which is open source and free to run yourself. The product adds organisations, roles, more providers and the infrastructure behind them — the office itself is the same code.',
+      link: { label: 'Look at OfisKit', href: '/products/ofiskit' },
     },
     metaDescription:
-      'unityofis is a virtual office that runs on your own video and chat provider account — rooms you can walk into, no markup and no lock-in.',
+      'UnityOfis is a virtual office that runs on your own video and chat provider account — rooms you can walk into, no markup and no lock-in.',
   },
   {
-    name: 'ofiskit',
+    name: 'OfisKit',
     slug: 'ofiskit',
     status: 'open-source',
     tagline: 'The office itself, free to run anywhere.',
     intro:
-      "ofiskit is the engine behind unityofis, and it's open source. One office, rooms, presence, lock and knock, custom status, and four-person peer-to-peer calls with screen share, raised hands and reactions. No accounts, no database. Enter an email and a name and you're in. Run it with a single command, or build your own product on top of it.",
+      "OfisKit is the engine behind UnityOfis, and it's open source. One office, rooms, presence, lock and knock, custom status, and four-person peer-to-peer calls with screen share, raised hands and reactions. No accounts, no database. Enter an email and a name and you're in. Run it with a single command, or build your own product on top of it.",
     body: [
       'The demo runs the whole office in your browser, because there is no hosted server. The first tab hosts the office and every other tab joins it, so a second tab is a second person and the calls between them are real WebRTC. A few simulated colleagues walk between rooms and knock on locked doors, so the office is never empty.',
     ],
@@ -69,21 +71,21 @@ export const products: Product[] = [
       'The demo runs entirely in your browser: open it in a second tab and that tab is a second person, with a real call between them. A few simulated colleagues keep the office busy.',
     aside: {
       title: 'Hosted, with your company around it',
-      body: 'unityofis is ofiskit with organisations, roles, guests, audit logs and your choice of call provider behind it — for teams who would rather not run the office themselves.',
-      link: { label: 'Look at unityofis', href: '/products/unityofis' },
+      body: 'UnityOfis is OfisKit with organisations, roles, guests, audit logs and your choice of call provider behind it — for teams who would rather not run the office themselves.',
+      link: { label: 'Look at UnityOfis', href: '/products/unityofis' },
     },
     licence:
       'AGPL-3.0-only for the app, the server and the UI packages; Apache-2.0 for the three interface packages, so writing an adapter is not a licensing decision.',
     metaDescription:
-      'ofiskit is the open-source virtual office engine behind unityofis: rooms, presence, knocking and four-person calls, running anywhere you host it.',
+      'OfisKit is the open-source virtual office engine behind UnityOfis: rooms, presence, knocking and four-person calls, running anywhere you host it.',
   },
   {
-    name: 'unitykit',
+    name: 'UnityKit',
     slug: 'unitykit',
     status: 'open-source',
     tagline: 'The design system behind everything UnityEvolv builds.',
     intro:
-      'unitykit is the shared React component library our products are built from, on Tailwind CSS v4 and daisyUI 5. It ships components, a theme and its tokens, in light and dark, and knows nothing about any app that uses it. This website is built with it.',
+      'UnityKit is the shared React component library our products are built from, on Tailwind CSS v4 and daisyUI 5. It ships components, a theme and its tokens, in light and dark, and knows nothing about any app that uses it. This website is built with it.',
     features: [
       {
         title: 'Contrast is a build gate',
@@ -105,7 +107,7 @@ export const products: Product[] = [
     ],
     licence: 'MIT.',
     metaDescription:
-      'unitykit is UnityEvolv’s open-source React design system on Tailwind v4 and daisyUI, with contrast checked in CI and tokens published as plain data.',
+      'UnityKit is UnityEvolv’s open-source React design system on Tailwind v4 and daisyUI, with contrast checked in CI and tokens published as plain data.',
   },
   {
     name: 'UnityProtect',
@@ -156,7 +158,7 @@ export const products: Product[] = [
       'FastPortfolio, a planned UnityEvolv product that turns your work history into a portfolio site worth sending.',
   },
   {
-    name: 'unityFin',
+    name: 'UnityFin',
     slug: 'unityfin',
     status: 'in-development',
     hidden: true,
@@ -164,11 +166,11 @@ export const products: Product[] = [
     intro:
       'A mobile app covering the calculations people actually reach for — SIP, EMI, PPF, NPS, income tax and more — alongside net-worth and asset tracking.',
     metaDescription:
-      'unityFin, a UnityEvolv personal finance app covering everyday calculations alongside net-worth and asset tracking.',
+      'UnityFin, a UnityEvolv personal finance app covering everyday calculations alongside net-worth and asset tracking.',
   },
 ]
 
-/** Everything the site is allowed to show. unityFin is not ready. */
+/** Everything the site is allowed to show. UnityFin is not ready. */
 export const visibleProducts = products.filter((product) => !product.hidden)
 
 export function productBySlug(slug: string): Product | undefined {

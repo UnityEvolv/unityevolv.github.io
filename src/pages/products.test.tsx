@@ -47,7 +47,7 @@ describe('Product page', () => {
     renderAt('/products/unityofis')
 
     const aside = screen.getByRole('complementary')
-    expect(within(aside).getByRole('link', { name: 'Look at ofiskit' })).toHaveAttribute(
+    expect(within(aside).getByRole('link', { name: 'Look at OfisKit' })).toHaveAttribute(
       'href',
       '/products/ofiskit',
     )

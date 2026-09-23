@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import { AppRoutes } from '../routes'
+import { mission } from '../content/company'
 
 // The contact page has its own file, contact.test.tsx: it has two sending
 // paths and enough of them to crowd this one out.
@@ -38,9 +39,7 @@ describe('About page', () => {
   it('says what the company does now, not the old story', () => {
     const { container } = renderAt('/about')
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'We build products, and we open the foundations.',
-    )
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(mission.storyHeadline)
     expect(container.textContent).not.toContain('VSamstha')
     expect(container.textContent).not.toContain('FastPortfolio - Your Professional')
   })

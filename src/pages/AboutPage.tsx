@@ -1,41 +1,40 @@
+import { howWeWork, mission } from '../content/company'
 import { CTABand } from '../sections/CTABand'
 import { Hero } from '../sections/Hero'
 import { LinkButton } from '../sections/LinkButton'
 import { Section } from '../sections/Section'
 
 /**
- * Who we are, told through what is on the table rather than adjectives.
+ * Who we are, in the company's own words.
  *
- * The old site's "from I to We" story went with the old products. Everything
- * claimed here can be checked by following a link, which is the only kind of
- * About page worth having.
+ * The story headline and paragraph are carried over from the previous site
+ * unchanged — they are Vamsi's, and a rewrite of the site is not a rewrite of
+ * what it says. What follows them is how that mission shows up in the work,
+ * which is the part a visitor can go and check.
  */
 export function AboutPage() {
   return (
     <>
-      <Hero
-        headline="We build products, and we open the foundations."
-        sub="UnityEvolv is a small team that builds its own products with AI, and builds other people's the same way."
-      />
+      <Hero headline={mission.storyHeadline} sub={mission.story} />
 
-      <Section title="How we work">
+      <Section>
+        <div className="grid items-center gap-8 sm:grid-cols-2">
+          <img
+            src="/img/about.webp"
+            alt="A crowd of people from many backgrounds, laughing together"
+            width={1200}
+            height={1200}
+            className="border-base-300 rounded-lg border"
+          />
+          <p className="text-base-content/80 text-lg">{mission.statement}</p>
+        </div>
+      </Section>
+
+      <Section title="How that works in practice">
         <div className="text-base-content/80 flex max-w-3xl flex-col gap-4 text-lg">
-          <p>
-            Every product we build stands on something we have already built and given away.
-            ofiskit, the virtual office engine, is open source and running; unityofis is that engine
-            with a company around it. unitykit, our design system, is on npm, and this website is
-            built with it.
-          </p>
-          <p>
-            That is deliberate. Open foundations mean the work has to be good enough to read, the
-            boundaries have to be real rather than assumed, and a customer is never locked to us by
-            anything except the fact that the product is good.
-          </p>
-          <p>
-            AI is how we move quickly through the parts that are well understood. The architecture,
-            the review and the decisions stay with people, and everything ships through the same
-            tests and continuous integration either way.
-          </p>
+          {howWeWork.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
         </div>
       </Section>
 
@@ -45,10 +44,10 @@ export function AboutPage() {
       >
         <div className="flex flex-wrap gap-3">
           <LinkButton href="https://unityevolv.com/ofis-kit/" variant="quiet">
-            Try the ofiskit demo
+            Try the OfisKit demo
           </LinkButton>
           <LinkButton href="https://unityevolv.com/unity-kit/" variant="quiet">
-            Browse the unitykit components
+            Browse the UnityKit components
           </LinkButton>
         </div>
       </Section>

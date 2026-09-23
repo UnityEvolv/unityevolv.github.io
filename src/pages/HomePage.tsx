@@ -1,3 +1,4 @@
+import { mission } from '../content/company'
 import { productsByStatus } from '../content/products'
 import { productBuildingService as service } from '../content/services'
 import { CTABand } from '../sections/CTABand'
@@ -8,11 +9,13 @@ import { Section } from '../sections/Section'
 
 /**
  * What UnityEvolv does, in the order a first-time visitor needs it: what we
- * do, what that has produced, what is coming, and how to start.
+ * stand for, what that has produced, what is coming, and how to start.
  *
- * Every product shown comes from `src/content/products.ts`, so a launch or a
- * new product appears here without this file changing — and anything hidden,
- * such as unityFin, cannot appear by accident.
+ * The headline and the sentence under it are the company's own mission,
+ * carried over from the previous site rather than rewritten. Every product
+ * shown comes from `src/content/products.ts`, so a launch appears here without
+ * this file changing, and a hidden product such as UnityFin cannot appear by
+ * accident.
  */
 export function HomePage() {
   const building = productsByStatus('live', 'in-development')
@@ -22,8 +25,9 @@ export function HomePage() {
   return (
     <>
       <Hero
-        headline="We build products with AI — ours, and yours."
-        sub="UnityEvolv builds its own products and opens the foundations they stand on. The same team builds other people's products the same way."
+        headline={mission.headline}
+        sub={mission.statement}
+        image={{ src: '/img/hero.webp', alt: '' }}
         actions={
           <>
             <LinkButton href="/contact?topic=build">Tell us about your idea</LinkButton>
@@ -71,10 +75,20 @@ export function HomePage() {
       </Section>
 
       <Section title={service.headline} intro={service.intro}>
-        <div className="flex flex-wrap gap-3">
-          <LinkButton href="/services" variant="quiet">
-            How we would build yours
-          </LinkButton>
+        <div className="grid items-center gap-8 sm:grid-cols-2">
+          <div className="flex flex-wrap gap-3">
+            <LinkButton href="/services" variant="quiet">
+              How we would build yours
+            </LinkButton>
+          </div>
+          <img
+            src="/img/services.webp"
+            alt=""
+            width={1200}
+            height={1200}
+            loading="lazy"
+            className="border-base-300 rounded-lg border"
+          />
         </div>
       </Section>
 

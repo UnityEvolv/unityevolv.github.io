@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import { AppRoutes } from '../routes'
 import { visibleProducts } from '../content/products'
+import { mission } from '../content/company'
 
 function renderHome() {
   return render(
@@ -15,9 +16,7 @@ function renderHome() {
 describe('Home page', () => {
   it('says what the company does in the heading', () => {
     renderHome()
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'We build products with AI — ours, and yours.',
-    )
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(mission.headline)
   })
 
   it('shows every visible product and never the hidden one', () => {
