@@ -50,7 +50,7 @@ export function Hero({ headline, sub, eyebrow, actions, image = defaultHeroImage
         </>
       ) : null}
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
         {eyebrow ? <div className="mb-4 flex items-center gap-2">{eyebrow}</div> : null}
         <h1 className="max-w-3xl text-4xl font-semibold text-balance sm:text-5xl">{headline}</h1>
         {sub ? <p className="text-base-content/80 mt-5 max-w-2xl text-lg">{sub}</p> : null}

@@ -1,4 +1,4 @@
-import { Card } from '@unityevolv/unitykit'
+import { Card, Icon } from '@unityevolv/unitykit'
 import { Link } from 'react-router-dom'
 import type { Product } from '../content/types'
 import { StatusBadge } from './StatusBadge'
@@ -22,15 +22,16 @@ function firstSentence(text: string): string {
 /**
  * One product, as it appears in a list.
  *
- * The kit's `Card` takes an `href` and becomes an anchor, but only a plain
- * one: it is router-agnostic and will not import a router. This site is a
- * client-side app, so the card uses `variant="interactive"` and supplies its
- * own `Link` — the arrangement the kit's own documentation asks consumers to
- * use.
+ * The link is at the foot and says where it goes — "Read about UnityOfis" —
+ * rather than being the product's name in the header. A name on its own is a
+ * link only to someone who tries it, which is how a list of products ends up
+ * looking like a list of facts with no way in.
  *
- * The whole card is not the link. A single link on the title keeps one tab
- * stop per card and one thing for a screen reader to announce, and leaves the
- * tagline as text rather than part of a very long link name.
+ * Still one link per card: one tab stop per product, and one thing for a
+ * screen reader to announce. The kit's `Card` can be an anchor itself, but
+ * only a plain one — it will not import a router — so this uses
+ * `variant="interactive"` and supplies its own `Link`, which is the
+ * arrangement the kit's documentation asks client-side consumers for.
  */
 export function ProductCard({ product, detailed = false }: ProductCardProps) {
   return (
@@ -39,16 +40,18 @@ export function ProductCard({ product, detailed = false }: ProductCardProps) {
       className="h-full"
       header={
         <div className="flex items-center justify-between gap-3">
-          <h3 className="text-lg font-semibold">
-            <Link
-              to={`/products/${product.slug}`}
-              className="hover:text-primary focus-visible:outline-focus rounded focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              {product.name}
-            </Link>
-          </h3>
+          <h3 className="text-lg font-semibold">{product.name}</h3>
           <StatusBadge status={product.status} />
         </div>
+      }
+      footer={
+        <Link
+          to={`/products/${product.slug}`}
+          className="text-secondary hover:text-primary focus-visible:outline-focus inline-flex items-center gap-1 rounded text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          Read about {product.name}
+          <Icon name="chevron-right" size="sm" />
+        </Link>
       }
     >
       <p className="text-base-content/80">{product.tagline}</p>

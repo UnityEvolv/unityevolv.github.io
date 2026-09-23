@@ -43,7 +43,15 @@ export function ProductsPage() {
         .filter((group) => group.products.length > 0)
         .map((group) => (
           <Section key={group.title} title={group.title} intro={group.intro}>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            {/*
+              A group of one gets the full width. In a two-column grid a lone
+              card sits beside an empty half, which reads as something missing
+              rather than as the only product in that group — and today "what
+              we are building" is exactly one product.
+            */}
+            <ul
+              className={group.products.length === 1 ? 'grid gap-4' : 'grid gap-4 sm:grid-cols-2'}
+            >
               {group.products.map((product) => (
                 <li key={product.slug}>
                   <ProductCard product={product} detailed />

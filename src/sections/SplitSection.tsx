@@ -30,7 +30,7 @@ export function SplitSection({
   imageSide = 'end',
 }: SplitSectionProps) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+    <section className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
       <div className="grid items-center gap-8 sm:grid-cols-2">
         <div className={imageSide === 'start' ? 'sm:order-2' : undefined}>
           <h2 className="text-2xl font-semibold sm:text-3xl">{title}</h2>

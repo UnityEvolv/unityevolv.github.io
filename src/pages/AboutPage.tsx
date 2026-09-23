@@ -1,5 +1,6 @@
-import { howWeWork, mission } from '../content/company'
+import { howWeWork, mission, principles } from '../content/company'
 import { CTABand } from '../sections/CTABand'
+import { FeatureGrid } from '../sections/FeatureGrid'
 import { Hero } from '../sections/Hero'
 import { LinkButton } from '../sections/LinkButton'
 import { Section } from '../sections/Section'
@@ -36,6 +37,13 @@ export function AboutPage() {
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
           ))}
         </div>
+      </Section>
+
+      <Section
+        title="What we hold ourselves to"
+        intro="Stated as things you can check rather than values you have to take on trust."
+      >
+        <FeatureGrid features={principles} />
       </Section>
 
       <Section
