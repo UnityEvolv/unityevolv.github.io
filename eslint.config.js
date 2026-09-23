@@ -4,7 +4,8 @@ import tseslint from 'typescript-eslint'
 import reactHooks from 'eslint-plugin-react-hooks'
 
 export default tseslint.config(
-  { ignores: ['dist', 'coverage', 'node_modules'] },
+  // dist-ssr is build output: the SSR bundle, linted already as its source.
+  { ignores: ['dist', 'dist-ssr', 'coverage', 'node_modules'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -15,6 +16,14 @@ export default tseslint.config(
     },
     plugins: { 'react-hooks': reactHooks },
     rules: reactHooks.configs.recommended.rules,
+  },
+  {
+    // The build scripts run in Node, not in a browser.
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.node,
+    },
   },
   {
     files: ['src/**/*.tsx'],

@@ -63,6 +63,55 @@ and link out to those URLs.
 - The rewrite stories stack on one another, since each page needs the setup branch. Merge
   a stack **bottom first**; GitHub retargets the child pull requests as each base lands.
 
+## How the site is built and published
+
+`npm run build` is three steps:
+
+1. `vite build` — the client bundle and `dist/index.html`, the template.
+2. `vite build --ssr src/entry-server.tsx --outDir dist-ssr` — the same
+   components, built to run in Node. **It must not build into `dist`**: that
+   publishes the server bundle and a second copy of `public/`, `CNAME`
+   included.
+3. `node scripts/prerender.mjs` — renders every path in `sitemapPaths` to its
+   own `index.html`, writes `404.html`, `sitemap.xml` and `robots.txt`, and
+   rewrites the title, description, canonical and link-preview tags per page.
+
+`scripts/check-dist.mjs` then refuses a build that would break the site in ways
+a green test run cannot see: a missing `CNAME`, a route that did not prerender,
+pages sharing one title, the SSR bundle published, or a directory at
+`/unity-kit` or `/ofis-kit` that would shadow another repository's live site.
+CI runs it before the upload.
+
+GitHub Pages serves `404.html` for any path it does not have, which is what
+makes an unknown URL a real 404 rather than a 200 that merely looks like one.
+
+Metadata lives in `src/seo.ts` and takes product descriptions from
+`src/content/products.ts`, because two copies of a description drift and the
+one that drifts is the one nobody looks at.
+
+## Checking the built site
+
+**Never check a prerendered site with `vite preview`.** It is a single-page-app
+server: it answers every unknown path with the root `index.html`, so every
+route appears to work while actually serving the home page. The title is wrong,
+the navbar highlights Home, and the console fills with hydration mismatches
+that exist only because of the fallback. Half a debugging session went into
+that ghost.
+
+Use `node scripts/serve-dist.mjs 4190`, which serves `dist` the way Pages does:
+`<path>/index.html`, `404.html` with a real 404 status, gzip on text, and a
+long cache on hashed assets. The last two matter because Lighthouse measures
+them — without compression the performance score reads about twenty points
+below what the real site gets.
+
+For accessibility, load each page in a frame at phone width, inject
+`node_modules/axe-core/axe.min.js` into that frame and run `axe.run` inside it.
+Two things to get right: set the theme in `localStorage` **before** the page
+loads, since switching `data-theme` afterwards and measuring immediately
+catches the CSS transition mid-flight and reports colours nobody ever sees; and
+inject axe into the frame rather than running it from the parent, which axe
+refuses.
+
 ## Package management
 
 **npm only.** Do not add `pnpm-lock.yaml` or `yarn.lock`. Commit `package-lock.json`.
