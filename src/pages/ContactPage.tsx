@@ -1,10 +1,11 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Alert, Button, Input, Select, Textarea } from '@unityevolv/unitykit'
 import { Hero } from '../sections/Hero'
 import { Section } from '../sections/Section'
+import { contactEndpoint, mailtoFor, topics } from './contactMessage'
 
-type SendState = 'idle' | 'sending' | 'sent' | 'failed'
+type SendState = 'idle' | 'sending' | 'sent' | 'failed' | 'handed-to-mail-client'
 
 /**
  * The endpoint a submission is posted to, supplied at build time.
@@ -14,32 +15,39 @@ type SendState = 'idle' | 'sending' | 'sent' | 'failed'
  * a build-time variable, which keeps the account out of the repository and
  * lets the endpoint change without a code change.
  *
- * With nothing configured the form says so plainly instead of pretending to
- * send. A form that silently swallows a message is worse than no form, and
- * that is exactly what the old Bootstrap site did with `action="#"`.
+ * With nothing configured the form hands the message to the visitor's mail
+ * client instead (KAN-23). What it never does is accept a message and drop it:
+ * the old Bootstrap site's `action="#"` swallowed every enquiry silently, and
+ * a form that looks like it worked is worse than no form.
  */
-const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
-
-const topics = [
-  { value: 'build', label: 'Building a product with AI' },
-  { value: 'unityofis', label: 'unityofis' },
-  { value: 'unityprotect', label: 'UnityProtect' },
-  { value: 'ofiskit', label: 'ofiskit' },
-  { value: 'unitykit', label: 'unitykit' },
-  { value: 'fastportfolio', label: 'FastPortfolio' },
-  { value: 'other', label: 'Something else' },
-]
-
 export function ContactPage() {
   const [params] = useSearchParams()
   const requested = params.get('topic')
   const initialTopic = topics.some((topic) => topic.value === requested) ? requested : 'build'
 
+  const endpoint = contactEndpoint()
   const [state, setState] = useState<SendState>('idle')
+
+  /**
+   * The topic from `?topic=`, applied after mount.
+   *
+   * This page is prerendered, and the prerender has no query string, so the
+   * built HTML always carries `build`. An uncontrolled `defaultValue` is only
+   * read when the element is created, so hydrating over that markup left every
+   * product's "Talk to us" landing on the wrong topic — the markup wins, and
+   * nothing errors.
+   *
+   * Setting the DOM value in an effect keeps the server and client markup
+   * identical, which is what hydration needs, and still leaves the field
+   * uncontrolled so a visitor's own choice is never overwritten by a render.
+   */
+  const topicRef = useRef<HTMLSelectElement>(null)
+  useEffect(() => {
+    if (initialTopic && topicRef.current) topicRef.current.value = initialTopic
+  }, [initialTopic])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!endpoint) return
 
     const form = event.currentTarget
     const data = new FormData(form)
@@ -50,6 +58,17 @@ export function ContactPage() {
     if (data.get('company')) {
       setState('sent')
       form.reset()
+      return
+    }
+
+    if (!endpoint) {
+      window.location.href = mailtoFor({
+        name: String(data.get('name') ?? ''),
+        email: String(data.get('email') ?? ''),
+        topic: String(data.get('topic') ?? 'build'),
+        message: String(data.get('message') ?? ''),
+      })
+      setState('handed-to-mail-client')
       return
     }
 
@@ -79,16 +98,16 @@ export function ContactPage() {
 
       <Section>
         <div className="max-w-xl">
-          {!endpoint ? (
-            <Alert variant="warn" title="This form is not connected yet" className="mb-6">
-              The form service has not been configured, so a message sent here would go nowhere.
-              Until it is, please reach us through GitHub.
-            </Alert>
-          ) : null}
-
           {state === 'sent' ? (
             <Alert variant="ok" title="Message sent" className="mb-6">
               Thank you — we will come back to you.
+            </Alert>
+          ) : null}
+
+          {state === 'handed-to-mail-client' ? (
+            <Alert variant="info" title="Your email app should be opening" className="mb-6">
+              Everything you wrote is already in the draft. Press send there and it reaches us. If
+              nothing opened, your browser may have no mail app set up.
             </Alert>
           ) : null}
 
@@ -98,7 +117,7 @@ export function ContactPage() {
             </Alert>
           ) : null}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate={false}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <Input name="name" label="Your name" required autoComplete="name" />
             <Input
               name="email"
@@ -108,7 +127,7 @@ export function ContactPage() {
               autoComplete="email"
               help="So we can reply."
             />
-            <Select name="topic" label="What is it about?" defaultValue={initialTopic ?? 'build'}>
+            <Select ref={topicRef} name="topic" label="What is it about?" defaultValue="build">
               {topics.map((topic) => (
                 <option key={topic.value} value={topic.value}>
                   {topic.label}
@@ -124,10 +143,16 @@ export function ContactPage() {
               <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <Button type="submit" variant="primary" loading={state === 'sending'}>
-                Send message
+                {endpoint ? 'Send message' : 'Write this in your email app'}
               </Button>
+              {!endpoint ? (
+                <p className="text-base-content/70 text-sm">
+                  This opens your own email app with the message ready to send, so you can see
+                  exactly what reaches us.
+                </p>
+              ) : null}
             </div>
           </form>
         </div>
