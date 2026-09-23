@@ -1,8 +1,17 @@
 import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
-// React Router 7 ships StaticRouter from `react-router` itself; the
-// `react-router-dom/server` entry point that v6 had no longer exists.
-import { StaticRouter } from 'react-router'
+/**
+ * From `react-router-dom`, the same package the components use, and not from
+ * `react-router` — which also exports `StaticRouter`, and is what the v6
+ * `react-router-dom/server` entry point became.
+ *
+ * Taking it from the other package gives the SSR bundle two copies of the
+ * router and therefore two contexts: the components read an empty one, decide
+ * the location is `/`, and every prerendered page marks **Home** as the
+ * current page. Nothing errors, and the only visible symptom is a hydration
+ * mismatch in the browser console.
+ */
+import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './routes'
 import { metaFor, type PageMeta } from './seo'
 
