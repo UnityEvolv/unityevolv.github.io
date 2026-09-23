@@ -75,7 +75,7 @@ describe('Contact page, with no form service configured', () => {
 
     await waitFor(() => expect(assigned).toHaveLength(1))
     expect(assigned[0]).toContain('mailto:n.vamsiram@unityevolv.com')
-    expect(decodeURIComponent(assigned[0])).toContain('unityofis')
+    expect(decodeURIComponent(assigned[0])).toContain('UnityOfis')
     expect(decodeURIComponent(assigned[0])).toContain('Four devices')
     expect(fetchSpy).not.toHaveBeenCalled()
 

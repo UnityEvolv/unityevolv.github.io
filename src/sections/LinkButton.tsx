@@ -38,8 +38,11 @@ const variantClasses: Record<LinkButtonVariant, string> = {
     'bg-primary text-primary-content hover:bg-primary-hover focus-visible:outline-focus inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2',
   secondary:
     'bg-secondary text-secondary-content hover:bg-secondary-hover focus-visible:outline-focus inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2',
+  // The surface is not decoration: this variant sits over the hero image on
+  // the home and services pages, and a transparent button with a hairline
+  // border all but disappears against a photograph.
   quiet:
-    'border-line text-base-content hover:bg-base-200 focus-visible:outline-focus inline-flex items-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2',
+    'border-line bg-base-100 text-base-content hover:bg-base-200 focus-visible:outline-focus inline-flex items-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2',
 }
 
 export function LinkButton({ href, variant = 'primary', children }: LinkButtonProps) {

@@ -66,11 +66,11 @@ describe('Layout', () => {
     renderAt('/')
 
     const footer = screen.getByRole('contentinfo')
-    expect(within(footer).getByRole('link', { name: /ofiskit demo/ })).toHaveAttribute(
+    expect(within(footer).getByRole('link', { name: /OfisKit demo/ })).toHaveAttribute(
       'href',
       'https://unityevolv.com/ofis-kit/',
     )
-    expect(within(footer).getByRole('link', { name: /unitykit components/ })).toHaveAttribute(
+    expect(within(footer).getByRole('link', { name: /UnityKit components/ })).toHaveAttribute(
       'href',
       'https://unityevolv.com/unity-kit/',
     )
