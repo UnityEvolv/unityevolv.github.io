@@ -29,7 +29,8 @@ import { metaFor, type PageMeta } from './seo'
  * bundles everything into this entry point, and reaching for a second file
  * inside the bundle would depend on how it happens to be chunked.
  */
-export { sitemapPaths, SITE_URL } from './seo'
+export { sitemapPaths, SITE_URL, canonicalUrl } from './seo'
+export { structuredDataFor } from './structuredData'
 
 export function render(url: string): { html: string; meta: PageMeta } {
   const html = renderToString(

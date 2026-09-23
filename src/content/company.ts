@@ -8,9 +8,9 @@
  * original text stays easy to find and to edit.
  */
 export const mission = {
-  headline: 'Welcome to Unity Evolve — where synergy sparks innovation',
+  headline: 'Welcome to UnityEvolv — where synergy sparks innovation',
   statement:
-    'Join the movement towards collective progress. At Unity Evolve, we bridge the gap between the individual and the collective, fostering environments where together, we grow stronger.',
+    'Join the movement towards collective progress. At UnityEvolv, we bridge the gap between the individual and the collective, fostering environments where together, we grow stronger.',
   storyHeadline: "Our story — charting the path from 'I' to 'We'",
   story:
     'From our humble beginnings to our global initiatives, our journey is a tapestry of individual threads woven into a vibrant tapestry of collective action and mutual growth.',

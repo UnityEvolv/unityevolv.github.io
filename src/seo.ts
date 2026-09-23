@@ -12,14 +12,27 @@ export interface PageMeta {
 }
 
 export const SITE_URL = 'https://unityevolv.com'
-const SITE_NAME = 'Unity Evolv'
+export const SITE_NAME = 'UnityEvolv'
 const DEFAULT_IMAGE = `${SITE_URL}/img/og-default.png`
+
+/**
+ * The URL a page is actually served at.
+ *
+ * GitHub Pages serves `/products/index.html` and answers `/products` with a
+ * 301 to `/products/`. A canonical, a sitemap entry or an `og:url` pointing at
+ * the version that redirects tells a crawler to prefer a URL that is not the
+ * one it will be given — small, but pointless, and easy to get right.
+ */
+export function canonicalUrl(path: string): string {
+  if (path === '/') return `${SITE_URL}/`
+  return `${SITE_URL}${path.replace(/\/+$/, '')}/`
+}
 
 function page(path: string, title: string, description: string, image = DEFAULT_IMAGE): PageMeta {
   return {
     title: path === '/' ? `${SITE_NAME} — we build products with AI` : `${title} — ${SITE_NAME}`,
     description,
-    url: path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`,
+    url: canonicalUrl(path),
     image,
   }
 }
@@ -30,36 +43,64 @@ function page(path: string, title: string, description: string, image = DEFAULT_
  * Two copies of a description drift, and the one that drifts is always the
  * one nobody looks at — the one search results and link previews use. So the
  * product entries are the source here too.
+ *
+ * Titles carry what the page is *about* rather than only what it is called:
+ * "UnityOfis" tells a searcher nothing they did not already type, while
+ * "UnityOfis — a virtual office that runs on your own provider account" earns
+ * the roughly sixty characters a search result actually shows.
  */
 export const staticPages: Record<string, PageMeta> = {
   '/': page(
     '/',
     'Home',
-    'UnityEvolv builds products with AI — its own, and other people’s — and opens the foundations they stand on.',
+    'UnityEvolv builds products with AI — its own, and other people’s — and opens the foundations they stand on. Two of them are open source and running today.',
   ),
   '/products': page(
     '/products',
-    'Products',
-    'UnityOfis, OfisKit, UnityKit and what is coming next. Two of them are open source and running today.',
+    'Products — UnityOfis, OfisKit and UnityKit',
+    'UnityOfis, OfisKit, UnityKit, UnityProtect and FastPortfolio. Two are open source and running today, and one of them you can try in your browser right now.',
   ),
   '/services': page('/services', 'Building products with AI', service.metaDescription),
   '/about': page(
     '/about',
-    'About',
-    'A small team that builds its own products with AI and opens the foundations they stand on.',
+    'About — open foundations, products on top',
+    'UnityEvolv is a small team that builds its own products with AI, opens the foundations they stand on, and builds other people’s products the same way.',
   ),
   '/contact': page(
     '/contact',
-    'Contact',
-    'Tell us what you are building. We answer every message ourselves.',
+    'Contact — tell us what you are building',
+    'Tell us what you are building and who it is for. We read every message ourselves and reply within a day or two, usually with questions.',
   ),
   '/404': page('/404', 'Page not found', 'That page is not here.'),
+}
+
+/**
+ * A product's title: its name and what it is, with the site name appended
+ * only when that still fits.
+ *
+ * A search result shows roughly sixty characters. "UnityOfis — UnityEvolv"
+ * wastes most of them on words the searcher already typed; "UnityOfis — a
+ * virtual office that runs on your own provider account — UnityEvolv" is
+ * eighty and gets cut mid-sentence. What it *is* beats who made it, so the
+ * brand is the part that gives way. The tagline keeps its own capitalisation:
+ * lowercasing the first letter turns "One family. Every device." into "one
+ * family. Every device.", which reads as a typo.
+ */
+function productTitle(name: string, tagline: string): string {
+  const what = tagline.replace(/\.$/, '')
+  const base = `${name} — ${what}`
+  return base.length <= 45 ? `${base} — ${SITE_NAME}` : base
 }
 
 const productPages: Record<string, PageMeta> = Object.fromEntries(
   visibleProducts.map((product) => [
     `/products/${product.slug}`,
-    page(`/products/${product.slug}`, product.name, product.metaDescription),
+    {
+      title: productTitle(product.name, product.tagline),
+      description: product.metaDescription,
+      url: canonicalUrl(`/products/${product.slug}`),
+      image: DEFAULT_IMAGE,
+    },
   ]),
 )
 
